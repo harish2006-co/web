@@ -1,1 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harish V | MBA Candidate & Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0f1d;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.25);
+      --accent-light: #34d399;
+      --text-main: #f9fafb;
+      --text-sub: #9ca3af;
+      --badge-bg: rgba(16, 185, 129, 0.12);
+    }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 4rem;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    /* Hero Profile Section */
+    .hero-card {
+      background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      margin-bottom: 2rem;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      flex-shrink: 0;
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 25px var(--accent-glow);
+    }
+
+    .hero-info { flex: 1; min-width: 280px; }
+    .hero-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
+    .hero-subtitle { color: var(--accent-light); font-size: 1.1rem; font-weight: 600; margin-top: 0.25rem; }
+    .hero-meta { color: var(--text-sub); font-size: 0.95rem; margin-top: 0.4rem; }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.4rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #064e3b;
+    }
+    .btn-primary:hover {
+      background: var(--accent-light);
+      box-shadow: 0 0 15px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Section Structure */
+    h2.section-header {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 2.5rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    h2.section-header::before {
+      content: "";
+      width: 6px;
+      height: 24px;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.6rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(16, 185, 129, 0.5);
+    }
+
+    .card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .card-sub { color: var(--accent-light); font-size: 0.9rem; font-weight: 600; }
+    .card-meta { color: var(--text-sub); font-size: 0.85rem; margin-bottom: 0.75rem; }
+    .card-desc { font-size: 0.92rem; color: #d1d5db; line-height: 1.55; }
+
+    /* Certificates Gallery */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .cert-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cert-body { padding: 1.2rem; flex: 1; }
+    .cert-actions {
+      padding: 0 1.2rem 1.2rem;
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      border-radius: 8px;
+      background: var(--badge-bg);
+      color: var(--accent-light);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    /* Modal for View Certificate */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      max-width: 900px;
+      width: 100%;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-header {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .modal-body {
+      flex: 1;
+      padding: 1rem;
+    }
+    .modal-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header / Hero Section -->
+    <header class="hero-card">
+      <div class="avatar-wrapper">
+        <img src="harish%20photo%202026.jpeg" alt="Harish V" onerror="this.src='profile.jpg'" />
+      </div>
+      <div class="hero-info">
+        <h1 class="hero-title">Harish V</h1>
+        <div class="hero-subtitle">MBA Candidate | Financial Operations & Digital Marketing</div>
+        <div class="hero-meta">📍 Tiruchirappalli, Tamil Nadu • 📞 +91 9524092799 • ✉️ veluharish2006@gmail.com</div>
+        
+        <div class="btn-group">
+          <a class="btn btn-primary" href="Harishresume.pdf" target="_blank">Download Resume (PDF)</a>
+          <a class="btn btn-outline" href="certificate%20document%20harish.pdf" target="_blank">Full Certificate Dossier</a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/in/harish-harish-543169345/" target="_blank">LinkedIn</a>
+          <a class="btn btn-outline" href="https://instagram.com/harish_offical_1" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <h2 class="section-header">Executive Summary</h2>
+    <div class="card">
+      <p class="card-desc">
+        Business administration and commerce graduate with core competencies in retail banking operations, customer acquisition, and verified digital marketing execution. Possesses hands-on field experience at <strong>India Post Payments Bank</strong>, coupled with credentials in <strong>Tally ERP 9, DCA (Grade A+), and AI in Business</strong>.
+      </p>
+    </div>
+
+    <!-- Experience & Education Grid -->
+    <div class="grid-2">
+      <div>
+        <h2 class="section-header">Internship Experience</h2>
+        <div class="card">
+          <div class="badge">Verified Government Undertaking</div>
+          <div class="card-title">India Post Payments Bank (IPPB)</div>
+          <div class="card-sub">Financial Department Intern</div>
+          <div class="card-meta">Jan 02, 2026 – Mar 20, 2026 | Tiruchirappalli, TN</div>
+          <p class="card-desc">
+            Spearheaded customer onboarding, digital subsidy account linkages, and telecom branch operations. Completed comprehensive research project: <em>"A study on various aadhar based subsidies to the Government scheme beneficiaries"</em> under Chief Manager-HR verification.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="section-header">Education</h2>
+        <div class="card">
+          <div class="badge">Postgraduate — In Progress</div>
+          <div class="card-title">SRM Trichy Arts and Science College</div>
+          <div class="card-sub">Master of Business Administration (MBA)</div>
+          <div class="card-meta">2026 – Present</div>
+          <hr style="border: 0; border-top: 1px solid var(--card-border); margin: 1rem 0;">
+          <div class="badge">Undergraduate — Graduated</div>
+          <div class="card-title">National College (Autonomous), Trichy</div>
+          <div class="card-sub">B.Com (Computer Applications) — 67%</div>
+          <div class="card-meta">2023 – 2026 • Awarded Best Outgoing Student</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verified Credentials & Certificates -->
+    <h2 class="section-header">Verified Certifications & Honors</h2>
+    <div class="cert-grid">
+      <!-- Item 1 -->
+      <div class="cert-card">
+        <div class="cert-body">
+          <div class="badge">Academic Honor</div>
+          <div class="card-title">Best Outgoing Student</div>
+          <div class="card-sub">National College Trichy</div>
+          <div class="card-meta">2023–2026 Batch</div>
+          <p class="card-desc">Awarded by the Department of Commerce with CA for highest tier academic and co-curricular excellence.</p>
+        </div>
+        <div class="cert-actions">
+          <button class="btn btn-outline" style="width:100%" onclick="openModal('certificate%20document%20harish.pdf')">Inspect Document</button>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="cert-card">
+        <div class="cert-body">
+          <div class="badge">Grade A+ Certification</div>
+          <div class="card-title">Diploma in Computer App (DCA)</div>
+          <div class="card-sub">METS Computer Education</div>
+          <div class="card-meta">ISO 9001:2015 | C. No: 18056148128</div>
+          <p class="card-desc">Practical curriculum covering Office applications, operating structures, and computational accounting.</p>
+        </div>
+        <div class="cert-actions">
+          <button class="btn btn-outline" style="width:100%" onclick="openModal('certificate%20document%20harish.pdf')">Inspect Document</button>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="cert-card">
+        <div class="cert-body">
+          <div class="badge">Workshop</div>
+          <div class="card-title">AI in Business</div>
+          <div class="card-sub">National College Trichy</div>
+          <div class="card-meta">Organized March 25, 2026</div>
+          <p class="card-desc">Opportunities and challenges of machine intelligence and automation for future corporate managers.</p>
+        </div>
+        <div class="cert-actions">
+          <button class="btn btn-outline" style="width:100%" onclick="openModal('certificate%20document%20harish.pdf')">Inspect Document</button>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="cert-card">
+        <div class="cert-body">
+          <div class="badge">Workshop</div>
+          <div class="card-title">Digital Marketing Opportunities</div>
+          <div class="card-sub">Department of B.Com CA</div>
+          <div class="card-meta">Organized March 12, 2025</div>
+          <p class="card-desc">Specialized training in modern SEO architecture, meta advertising, and conversion tracking.</p>
+        </div>
+        <div class="cert-actions">
+          <button class="btn btn-outline" style="width:100%" onclick="openModal('certificate%20document%20harish.pdf')">Inspect Document</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Document Preview Modal -->
+  <div class="modal" id="pdfModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span style="font-weight:600">Credential Document Viewer</span>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdfFrame" src=""></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(filePath) {
+      document.getElementById('pdfFrame').src = filePath;
+      document.getElementById('pdfModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('pdfModal').style.display = 'none';
+      document.getElementById('pdfFrame').src = '';
+    }
+    window.onclick = function(event) {
+      const modal = document.getElementById('pdfModal');
+      if (event.target === modal) closeModal();
+    }
+  </script>
+</body>
+</html>
